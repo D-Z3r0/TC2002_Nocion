@@ -25,8 +25,32 @@
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
     <title>React App</title>
+    <h1 class="centrado">Nocion</h1>
+    <style>
+      .centrado{
+        text-align: center;
+      }
+      h1.centrado {
+            font-family: 'Poppins', sans-serif; 
+            font-size: 45px; 
+            margin-top: 35px; 
+            color: #0f0f0f; 
+            text-transform: uppercase; 
+      }
+      .Header {
+          display: flex;
+          justify-content: center; /* Centra horizontalmente */
+          align-items: center; /* Centra verticalmente */
+          background-color: #0078d4; /* Color de fondo del encabezado */
+          color: white; /* Color del texto en el encabezado */
+          padding: 0px; /* Espaciado interno */
+      }
+
+    </style>
+
   </head>
-  <body>
+  <body style="background-color: #5F9EA0;">
+    <header class="Header"></header> 
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
     <!--
