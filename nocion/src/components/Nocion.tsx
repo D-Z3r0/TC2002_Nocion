@@ -2,20 +2,22 @@ import React, { CSSProperties, useState } from 'react';
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
+import MyDatePicker from './DatePicker';
+import MyContador from './Contador';
+import MyField from './Field';
 
 
   
 function Nocion() {
     const [field1, setField1] = useState('');
     const [field2, setField2] = useState('');
-    const [date1, setDate1] = useState('');
-    const [date2, setDate2] = useState('');
     const [count, setCount] = useState(0);
 
     const gridStyle: CSSProperties = {
         display: 'grid',
         gridTemplateColumns: '1fr 1fr 1fr 1fr 1fr',
         gap: '16px',
+
     };
 
     const gridItemStyle: CSSProperties = {
@@ -32,13 +34,6 @@ function Nocion() {
         setField2(e.target.value);
     };
 
-    const handleDate1Change = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setDate1(e.target.value);
-    };
-
-    const handleDate2Change = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setDate2(e.target.value);
-    };
 
     const handleCountChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const newValue = parseInt(e.target.value);
@@ -48,20 +43,17 @@ function Nocion() {
     return (
         <div className="Notion">
             <div style={gridStyle}>
+                <div ><MyField></MyField></div>
                 <div style={gridItemStyle}>
-                    <input type="text" value={field1} onChange={handleField1Change} placeholder="Field 1" />
                 </div>
+                <div ><MyDatePicker fecha="fecha de creacion" /></div>
                 <div style={gridItemStyle}>
-                    <input type="text" value={field2} onChange={handleField2Change} placeholder="Field 2" />
                 </div>
+                <div ><MyDatePicker fecha="fecha de entrega" /></div>
                 <div style={gridItemStyle}>
-                    <input type="date" value={date1} onChange={handleDate1Change} placeholder="Date 1" />
                 </div>
+                <div ><MyContador></MyContador></div>
                 <div style={gridItemStyle}>
-                    <input type="date" value={date2} onChange={handleDate2Change} placeholder="Date 2" />
-                </div>
-                <div style={gridItemStyle}>
-                    <input type="number" value={count} onChange={handleCountChange} placeholder="Counter" />
                 </div>
             </div>
         </div>
