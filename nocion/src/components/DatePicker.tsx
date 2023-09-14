@@ -25,7 +25,25 @@ export default function MyDatePicker(props: MyDatePickerProps) {
         <LocalizationProvider dateAdapter={AdapterDayjs}>
             <DatePicker
                 label={fecha}
-                onChange={handleDateChange} // Agregar un controlador de eventos para detectar cambios de fecha
+                onChange={handleDateChange}
+                sx={{
+                  '& .MuiInputLabel-root': {
+                    color: 'Black', // Cambia el color del texto de la etiqueta
+                  },
+                  '& .MuiOutlinedInput-root': {
+                    borderRadius: '40px', // Ajusta el radio del borde
+                    backgroundColor: 'Wheat', // Establece el fondo de color
+                    '& fieldset': {
+                      borderColor: 'Wheat', // Cambia el color del borde
+                    },
+                    '&:hover fieldset': {
+                      borderColor: 'Peru', // Cambia el color del borde al pasar el mouse
+                    },
+                    '&.Mui-focused fieldset': {
+                      borderColor: 'Peru', // Cambia el color del borde cuando está enfocado
+                    },
+                  },
+                }}
             />
         </LocalizationProvider>
     );

@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
+import * as React from 'react';
 import TextField from '@mui/material/TextField';
-import Box from '@mui/material/Box';
 
 interface MyFieldProps {
   labelText:string;
@@ -16,20 +15,35 @@ export default function MyField(props: MyFieldProps) {
   };
 
   return (
-    <Box
-      component="form"
-      sx={{
-        '& > :not(style)': { m: 1, width: '25ch' },
-      }}
-      noValidate
-      autoComplete="off"
-    >
+    <div>
       <TextField
-        id="outlined-basic"
+        required
+        id="outlined-required"
         label={props.labelText}
-        variant="outlined"
-        onChange={handleFieldChange} // Agregar un controlador de eventos para detectar cambios
+        defaultValue="Hello World"
+        onChange={handleFieldChange}
+        sx={{
+          '& .MuiInputLabel-root': {
+            color: 'Black', // Cambia el color del texto de la etiqueta
+          },
+          '& .MuiOutlinedInput-root': {
+            borderRadius: '40px', // Ajusta el radio del borde
+            backgroundColor: 'Wheat', // Establece el fondo de color
+            '& fieldset': {
+              borderColor: 'Wheat', // Cambia el color del borde
+            },
+            '&:hover fieldset': {
+              borderColor: 'Peru', // Cambia el color del borde al pasar el mouse
+            },
+            '&.Mui-focused fieldset': {
+              borderColor: 'Peru', // Cambia el color del borde cuando está enfocado
+            },
+          },
+        }}
       />
-    </Box>
+    </div>
   );
 }
+
+
+

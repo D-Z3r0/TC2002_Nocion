@@ -6,6 +6,7 @@ import MyDatePicker from './DatePicker';
 import MyContador from './Contador';
 import MyField from './Field';
 import MediaCard from './Tarjeta';
+import Buttons from './Button';
 import "./Nocion.css";
 
 function Nocion() {
@@ -66,33 +67,26 @@ function Nocion() {
                 <div>
                     <MyField onFieldChange={handleFieldChangeTitulo} labelText='Titulo'/>
                 </div>
-                <div style={gridItemStyle}></div>
                 <div>
                     <MyField onFieldChange={handleFieldChangeDescripcion} labelText='Descripcion'/>
                 </div>
-                <div style={gridItemStyle}></div>
                 <div>
                     <MyDatePicker onDateChange={handleDateChangeCreacion} fecha="Fecha de creación" />
                 </div>
-                <div style={gridItemStyle}></div>
                 <div>
                     <MyDatePicker onDateChange={handleDateChangeEntrega} fecha="Fecha de entrega" />
                 </div>
-                <div style={gridItemStyle}></div>
                 <div>
                     <MyContador onCountChange={handleCountValueChange} />
                 </div>
-                <div>
-                    <button onClick={handleGuardarClick}>Guardar</button>
-                </div>
-                <div style={gridItemStyle}></div>
             </div>
-
+            <div>
+                <Buttons></Buttons>
+            </div>
             <div className='Div1'>
-                <div>
+                <div className='Scroll'>
                     <MediaCard titulo={tituloValue} descripcion={descripcionValue} fechaCreacion={fechaCreacionValue} fechaEntrega={fechaEntregaValue} tiempo={countValue} />
                 </div>
-                <div style={gridItemStyle}></div>
             </div>
         </div>
     );
