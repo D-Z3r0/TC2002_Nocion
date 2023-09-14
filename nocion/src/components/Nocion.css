@@ -1,3 +1,76 @@
+.Div1 {
+    background-color: #DCDCDC;
+    display: flex;
+    align-items: center; /* Alinea verticalmente en el centro */
+    justify-content: space-around; /* Distribuye el espacio horizontalmente */
+    height: 300px;
+    grid-column: span 2; /* Ocupa dos columnas completas */
+    margin-top: 70px;
+}
+
+.Notion {
+    display: grid;
+    gap: 0px; /* Espacio entre elementos */
+    padding: 6px; /* Espaciado interior */
+    justify-items: center; /* Alinea elementos internos horizontalmente al centro */
+    height: 700px;
+    padding: 20px; /* Espaciado interior de los elementos internos */
+    text-align: center; /* Alineación del contenido al centro */
+    display: flex; /* Usamos flexbox para centrar verticalmente */
+    flex-direction: column; /* Aplicamos flexbox en dirección de columna */
+    align-items:center; /* Alineamos los elementos verticalmente al centro */
+    justify-content: center; /* Alineamos los elementos horizontalmente al centro */
+}
+
+
+
+.Notion > div {
+    padding: 20px; /* Espaciado interior de los elementos internos */
+    text-align: center; /* Alineación del contenido al centro */
+    display: flex; /* Usamos flexbox para centrar verticalmente */
+    flex-direction: column; /* Aplicamos flexbox en dirección de columna */
+    align-items:center; /* Alineamos los elementos verticalmente al centro */
+    justify-content: center; /* Alineamos los elementos horizontalmente al centro */
+}
+
+/* Estilos base para los elementos */
+.MyField,
+.MyDatePicker,
+.MyContador,
+.Buttons {
+    /* Estilo de fuente y color de texto */
+    font-family: 'Poppins';
+    color: #fff; /* Cambia el color del texto a blanco */
+   
+
+    /* Sombra y transición suave */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease-in-out;
+
+    /* Margen y espaciado interno */
+    margin: 10px;
+    padding: 15px; /* Reduce el espacio interno para hacerlo más compacto */
+
+    /* Añade un poco de espacio adicional alrededor del contenido interno */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Estilos al pasar el mouse por encima para resaltar */
+.MyField:hover,
+.MyDatePicker:hover,
+.MyContador:hover {
+    transform: scale(1.1); /* Aumenta la escala al pasar el mouse */
+}
+
+
+
+/* Estilos para elementos con gridItemStyle */
+.gridItemStyle {
+    /* Agrega estilos personalizados para elementos con esta clase si es necesario */
+}
 .Div1{
     width: 95%;
     height: 100%;
