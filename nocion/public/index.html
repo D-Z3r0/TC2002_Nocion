@@ -5,6 +5,7 @@
     <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
+
     <meta
       name="description"
       content="Web site created using create-react-app"
@@ -15,53 +16,39 @@
       user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
     -->
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <!--
-      Notice the use of %PUBLIC_URL% in the tags above.
-      It will be replaced with the URL of the `public` folder during the build.
-      Only files inside the `public` folder can be referenced from the HTML.
 
-      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
-      work correctly both with client-side routing and a non-root public URL.
-      Learn how to configure a non-root public URL by running `npm run build`.
-    -->
     <title>React App</title>
-    <h1 class="centrado">Nocion</h1>
+    <h1 class="centrado">
+      Bienvenidos a <span class="custom-text">NOCION</span>
+    </h1>
     <style>
-      .centrado{
+      .centrado {
         text-align: center;
       }
       h1.centrado {
-            font-family: 'Poppins', sans-serif; 
-            font-size: 45px; 
-            margin-top: 35px; 
-            color: #0f0f0f; 
-            text-transform: uppercase; 
-      }
-      .Header {
-          display: flex;
-          justify-content: center; /* Centra horizontalmente */
-          align-items: center; /* Centra verticalmente */
-          background-color: #0078d4; /* Color de fondo del encabezado */
-          color: white; /* Color del texto en el encabezado */
-          padding: 0px; /* Espaciado interno */
+        font-family: 'Poppins', sans-serif;
+        font-size: 70px;
+        margin-top: 100px;
+        color: #6b6b6b;
+        text-transform: uppercase; /* Convierte el texto en mayúsculas */
       }
 
+      .custom-text {
+        font-family: 'Impact', sans-serif;
+        color: #A0522D; /* Cambia el color de letra */
+      }
+
+      body {
+        background-color: #E0FFFF;
+        background-image: url('%PUBLIC_URL%/azul.png');
+        background-size: cover;
+        background-repeat: no-repeat;
+      }
     </style>
-
   </head>
-  <body style="background-color: #5F9EA0;">
-    <header class="Header"></header> 
+  <body>
+    <header class="Header"></header>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
-
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
-
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
   </body>
 </html>

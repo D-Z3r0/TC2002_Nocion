@@ -6,6 +6,7 @@ import MyDatePicker from './DatePicker';
 import MyContador from './Contador';
 import MyField from './Field';
 import MediaCard from './Tarjeta';
+import Buttons from './Button';
 import "./Nocion.css";
 
 function Nocion() {
@@ -43,27 +44,28 @@ function Nocion() {
                 <div>
                     <MyField />
                 </div>
-                <div style={gridItemStyle}></div>
+                <div>
+                    <MyField />
+                </div>
                 <div>
                     <MyDatePicker fecha="fecha de creación" />
                 </div>
-                <div style={gridItemStyle}></div>
                 <div>
                     <MyDatePicker fecha="fecha de entrega" />
                 </div>
-                <div style={gridItemStyle}></div>
                 <div>
                     <MyContador />
                 </div>
-                <div style={gridItemStyle}></div>
+            </div>
+
+            <div>
+                <Buttons></Buttons>
             </div>
 
             <div className='Div1'>
                 <div>
                     <MediaCard />
                 </div>
-                <div style={gridItemStyle}></div>
-
             </div>
         </div>
     );
