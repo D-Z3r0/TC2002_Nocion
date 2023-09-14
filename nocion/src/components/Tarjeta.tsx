@@ -75,27 +75,27 @@ export default function MediaCard(props: MediaCardProps) {
   }
 
   return (
-    <Card sx={{ maxWidth: 400 }}>
-      <CardContent>
-        <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-          <Typography gutterBottom variant="h5" component="div" sx={{ textAlign: 'left' }}>
-            {props.titulo}
-          </Typography>
-          <label style={labelStyle}>
-            {prioridad}
-          </label>
-        </Box>
-        <Typography variant="body2" color="text.secondary" sx={{ textAlign: 'left' }}>
-          {props.descripcion}
+  <Card sx={{ maxWidth: 400 }}>
+    <CardContent>
+      <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+        <Typography gutterBottom variant="h5" component="div" sx={{ textAlign: 'left', overflowWrap: 'break-word', wordBreak: 'break-word' }}>
+          {props.titulo}
         </Typography>
-      </CardContent>
-      <CardActions sx={{ justifyContent: 'space-between' }}>
-        <div>
-          <label>{props.fechaEntrega}</label>
-          <label style={{ marginLeft: '15px' }}>Tiempo: {props.tiempo}hrs</label>
-        </div>
-        <Button size="small">Eliminar Tarea</Button>
-      </CardActions>
-    </Card>
+        <label style={labelStyle}>
+          {prioridad}
+        </label>
+      </Box>
+      <Typography variant="body2" color="text.secondary" sx={{ textAlign: 'left', overflowWrap: 'break-word', wordBreak: 'break-word' }}>
+        {props.descripcion}
+      </Typography>
+    </CardContent>
+    <CardActions sx={{ justifyContent: 'space-between' }}>
+      <div>
+        <label>{props.fechaEntrega}</label>
+        <label style={{ marginLeft: '15px' }}>Tiempo: {props.tiempo}hrs</label>
+      </div>
+      <Button size="small">Eliminar Tarea</Button>
+    </CardActions>
+  </Card>
   );
 }
