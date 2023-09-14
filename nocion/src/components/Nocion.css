@@ -1,7 +1,3 @@
-
-
-
-
 .Div1 {
     background-color: #DCDCDC;
     display: flex;
@@ -74,4 +70,25 @@
 /* Estilos para elementos con gridItemStyle */
 .gridItemStyle {
     /* Agrega estilos personalizados para elementos con esta clase si es necesario */
+}
+.Div1{
+    width: 95%;
+    height: 100%;
+    margin-top: 25px;
+    margin-bottom: 25px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #DCDCDC;
+    border-radius: 25px;
+    padding-left: 25px;
+    padding-top: 25px;
+    padding-right: 25px;
+    padding-bottom: 25px;
+    height: fit-content;
+}
+
+.Scroll {
+    margin-left: auto;
+    margin-right: auto;
+    overflow-y: auto;
 }

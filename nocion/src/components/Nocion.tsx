@@ -63,7 +63,7 @@ function Nocion() {
             </div>
 
             <div className='Div1'>
-                <div>
+                <div className='Scroll'>
                     <MediaCard />
                 </div>
             </div>
