@@ -1,12 +1,4 @@
-.Div1 {
-    background-color: #DCDCDC;
-    display: flex;
-    align-items: center; /* Alinea verticalmente en el centro */
-    justify-content: space-around; /* Distribuye el espacio horizontalmente */
-    height: 300px;
-    grid-column: span 2; /* Ocupa dos columnas completas */
-    margin-top: 70px;
-}
+
 
 .Notion {
     display: grid;

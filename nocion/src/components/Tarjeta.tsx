@@ -5,13 +5,14 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import { display } from '@mui/system';
 
 export default function MediaCard() {
   return (
     <Card sx={{ maxWidth: 500 }}>   
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
-          Lizard
+          cneiujcnejncjncicnwoenfjkwc wokf okw cofkwo
         </Typography>
         <Typography variant="body2" color="text.secondary">
           Lizards are a widespread group of squamate reptiles, with over 6,000
