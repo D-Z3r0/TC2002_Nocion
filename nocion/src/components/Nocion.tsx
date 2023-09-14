@@ -10,9 +10,11 @@ import Buttons from './Button';
 import "./Nocion.css";
 
 function Nocion() {
-    const [field1, setField1] = useState('');
-    const [field2, setField2] = useState('');
-    const [count, setCount] = useState(0);
+    const [tituloValue, setFieldValueTitulo] = useState('');
+    const [descripcionValue, setFieldValueDescripcion] = useState('');
+    const [fechaCreacionValue, setFechaCreacion] = useState('');
+    const [fechaEntregaValue, setFechaEntrega] = useState('');
+    const [countValue, setCountValue] = useState(0);
 
     const gridStyle: CSSProperties = {
         display: 'grid',
@@ -25,46 +27,65 @@ function Nocion() {
         textAlign: 'center',
     };
 
-    const handleField1Change = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setField1(e.target.value);
+
+    const handleFieldChangeTitulo = (value: string) => {
+        setFieldValueTitulo(value);
     };
 
-    const handleField2Change = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setField2(e.target.value);
+    const handleFieldChangeDescripcion = (value: string) => {
+        setFieldValueDescripcion(value);
     };
 
-    const handleCountChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const newValue = parseInt(e.target.value);
-        setCount(isNaN(newValue) ? 0 : newValue);
+    const handleDateChangeCreacion = (date: string) => {
+        setFechaCreacion(date);
+    };
+    
+    // En MyDatePicker para fecha de entrega
+    const handleDateChangeEntrega = (date: string) => {
+        setFechaEntrega(date);
+    };
+
+    const handleCountValueChange = (value: number) => {
+        setCountValue(value);
+    };
+
+    const handleGuardarClick = () => {
+        // Acceder a los valores desde los estados
+        console.log('NUEVA TARJETA CREADA');
+        console.log('Titulo:', tituloValue);
+        console.log('Descripcion:', descripcionValue);
+        console.log('Fecha de creación:', fechaCreacionValue);
+        console.log('Fecha de entrega:', fechaEntregaValue);
+        console.log('Valor de MyContador:', countValue);
+
+        // Aquí puedes realizar acciones adicionales, como enviar los valores a un servidor, etc.
     };
 
     return (
         <div className="Notion">
             <div style={gridStyle}>
                 <div>
-                    <MyField />
+                    <MyField onFieldChange={handleFieldChangeTitulo} labelText='Titulo'/>
                 </div>
                 <div>
-                    <MyField />
+                    <MyField onFieldChange={handleFieldChangeDescripcion} labelText='Descripcion'/>
                 </div>
                 <div>
-                    <MyDatePicker fecha="fecha de creación" />
+                    <MyDatePicker onDateChange={handleDateChangeCreacion} fecha="Fecha de creación" />
                 </div>
                 <div>
-                    <MyDatePicker fecha="fecha de entrega" />
+                    <MyDatePicker onDateChange={handleDateChangeEntrega} fecha="Fecha de entrega" />
                 </div>
                 <div>
-                    <MyContador />
+                    <MyContador onCountChange={handleCountValueChange} />
                 </div>
             </div>
-
             <div>
                 <Buttons></Buttons>
             </div>
-
             <div className='Div1'>
                 <div className='Scroll'>
-                    <MediaCard />
+                    <MediaCard titulo={tituloValue} descripcion={descripcionValue} fechaCreacion={fechaCreacionValue} fechaEntrega={fechaEntregaValue} tiempo={countValue} />
                 </div>
             </div>
         </div>

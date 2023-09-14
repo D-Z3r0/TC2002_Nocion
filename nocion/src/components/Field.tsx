@@ -1,14 +1,27 @@
 import * as React from 'react';
 import TextField from '@mui/material/TextField';
 
-export default function FormPropsTextFields() {
+interface MyFieldProps {
+  labelText:string;
+  onFieldChange: (value: string) => void;
+}
+
+export default function MyField(props: MyFieldProps) {
+  const { onFieldChange } = props;
+
+  const handleFieldChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newValue = e.target.value;
+    onFieldChange(newValue); // Llamar a la función prop para pasar el valor al componente Nocion
+  };
+
   return (
     <div>
       <TextField
         required
         id="outlined-required"
-        label="Titulo"
+        label={props.labelText}
         defaultValue="Hello World"
+        onChange={handleFieldChange}
         sx={{
           '& .MuiInputLabel-root': {
             color: 'Black', // Cambia el color del texto de la etiqueta
