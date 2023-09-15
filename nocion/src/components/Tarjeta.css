@@ -1,0 +1,96 @@
+/* Aplicar word-wrap para forzar el ajuste de palabras y el corte de texto dentro del Card */
+.profile-card {
+  width: 300px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 1rem;
+  border-radius: 15px;
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
+  background-color: #f5deb3;
+  color: #000;
+  border: 8px solid #ff5e93;
+  /* Elimina la min-height o configúrala en un valor más bajo */
+  word-wrap: break-word; /* Permite que las palabras se ajusten automáticamente */
+  white-space: normal; /* Hace que el texto fluya automáticamente a la siguiente línea si es necesario */
+  font-size: 1.2rem; /* Tamaño de fuente predeterminado para el contenido del Card */
+}
+
+
+/* Aplicar word-break para forzar el ajuste de palabras y el corte de texto */
+.profile-title,
+.profile-description {
+  overflow-y: auto !important;
+  padding-top: 20px;
+
+}
+
+
+/* Espaciado entre elementos */
+.profile-title {
+  font-size: 1.8rem;
+  margin: 0 0 1rem 0; /* Agrega margen inferior de 1rem */
+}
+
+.profile-divider {
+  border: 0;
+  border-top: 2px solid #fff;
+  margin: 1rem 0; /* Agrega margen superior e inferior de 1rem */
+  width: 100%;
+}
+
+.profile-description {
+  font-size: 1.2rem;
+  margin: 0 0 1rem 0; /* Agrega margen inferior de 1rem */
+  padding-top: 20px; 
+}
+
+.profile-priority label {
+  padding: 0.5rem 1rem;
+  border-radius: 50px;
+  font-weight: bold;
+  background-color: #ff5e93; /* Fondo gradiente */
+  color: #fff; /* Texto en blanco */
+  margin: 0 0 1rem 0; /* Agrega margen inferior de 1rem */
+  padding-top: 20px !important; 
+
+}
+
+.profile-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start; /* Alinea los elementos a la izquierda */
+  margin-top: 1rem;
+}
+
+/* Espaciado entre elementos */
+.profile-creation,
+.profile-delivery,
+.profile-tiempo {
+  font-size: 1.1rem;
+  margin: 0 0 1rem 0; /* Agrega margen inferior de 1rem */
+  float: left;
+  padding-top: 20px;
+}
+
+.profile-button {
+  background-color: #ff5e93;
+  color: #fff;
+  border: none;
+  border-radius: 50px;
+  width: 150px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1rem;
+  margin: 2rem 0 0 0; /* Cambia margin-top a 2rem y elimina margin-right */
+  transition: background-color 0.3s ease-in-out;
+}
+
+
+
+

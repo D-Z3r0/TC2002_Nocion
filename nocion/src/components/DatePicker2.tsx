@@ -3,12 +3,12 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 
-interface MyDatePickerProps {
+interface MyDatePickerProps2 {
     fecha: string;
     onDateChange: (value: string) => void;
 }
 
-export default function MyDatePicker(props: MyDatePickerProps) {
+export default function MyDatePicker(props: MyDatePickerProps2) {
     const { fecha, onDateChange } = props;
 
     const handleDateChange = (date: Date | null) => {
@@ -34,14 +34,14 @@ export default function MyDatePicker(props: MyDatePickerProps) {
                     borderRadius: '40px',
                     backgroundColor: 'none',
                     '& fieldset': {
-                      borderColor: 'Yellow',
+                      borderColor: 'Lime',
                       borderWidth: '5px', // Ajusta el grosor del borde
                     },
                     '&:hover fieldset': {
-                      borderColor: 'Yellow',
+                      borderColor: 'Lime',
                     },
                     '&.Mui-focused fieldset': {
-                      borderColor: 'Yellow',
+                      borderColor: 'green',
                     },
                     
                   },
@@ -50,4 +50,3 @@ export default function MyDatePicker(props: MyDatePickerProps) {
         </LocalizationProvider>
     );
 }
-

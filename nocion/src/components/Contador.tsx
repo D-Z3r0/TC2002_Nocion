@@ -17,35 +17,37 @@ export default function MyContador(props: MyContadorProps) {
     onCountChange(isNaN(newValue) ? 0 : newValue);
   };
 
-    return (
-        <div>
-            <TextField
-                type="number"
-                value={count}
-                onChange={handleCountChange}
-                label="Horas Estimadas"
-                variant="outlined"
-                sx={{
-                    '& .MuiInputLabel-root': {
-                      color: 'Black', // Cambia el color del texto de la etiqueta
-                    },
-                    '& .MuiOutlinedInput-root': {
-                      borderRadius: '40px', // Ajusta el radio del borde
-                      backgroundColor: 'Wheat', // Establece el fondo de color
-                      '& fieldset': {
-                        borderColor: 'Wheat', // Cambia el color del borde
-                      },
-                      '&:hover fieldset': {
-                        borderColor: 'Peru', // Cambia el color del borde al pasar el mouse
-                      },
-                      '&.Mui-focused fieldset': {
-                        borderColor: 'Peru', // Cambia el color del borde cuando está enfocado
-                      },
-                    },
-                  }}
-            />
-        </div>
-    );
+  return (
+    <div>
+      <TextField
+        type="number"
+        value={count}
+        onChange={handleCountChange}
+        label="Horas Estimadas"
+        variant="outlined"
+        sx={{
+          '& .MuiInputLabel-root': {
+            color: 'white',
+          },
+          '& .MuiOutlinedInput-root': {
+            borderRadius: '40px',
+            backgroundColor: 'none',
+            '& fieldset': {
+              borderColor: 'Orange',
+              borderWidth: '5px', // Ajusta el grosor del borde
+            },
+            '&:hover fieldset': {
+              borderColor: 'Orange',
+            },
+            '&.Mui-focused fieldset': {
+              borderColor: 'Orange',
+            },
+            
+          },
+        }}
+      />
+    </div>
+  );
 }
 
 

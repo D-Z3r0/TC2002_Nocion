@@ -1,84 +1,64 @@
 .Notion {
-    display: grid;
-    gap: 0px; /* Espacio entre elementos */
-    padding: 6px; /* Espaciado interior */
-    justify-items: center; /* Alinea elementos internos horizontalmente al centro */
-    height: 700px;
-    padding: 20px; /* Espaciado interior de los elementos internos */
-    text-align: center; /* Alineación del contenido al centro */
-    display: flex; /* Usamos flexbox para centrar verticalmente */
-    flex-direction: column; /* Aplicamos flexbox en dirección de columna */
-    align-items:center; /* Alineamos los elementos verticalmente al centro */
-    justify-content: center; /* Alineamos los elementos horizontalmente al centro */
-}
-
-
-
-.Notion > div {
-    padding: 20px; /* Espaciado interior de los elementos internos */
-    text-align: center; /* Alineación del contenido al centro */
-    display: flex; /* Usamos flexbox para centrar verticalmente */
-    flex-direction: column; /* Aplicamos flexbox en dirección de columna */
-    align-items:center; /* Alineamos los elementos verticalmente al centro */
-    justify-content: center; /* Alineamos los elementos horizontalmente al centro */
-}
-
-/* Estilos base para los elementos */
-.MyField,
-.MyDatePicker,
-.MyContador,
-.Buttons {
-    /* Estilo de fuente y color de texto */
-    font-family: 'Poppins';
-    color: #fff; /* Cambia el color del texto a blanco */
-   
-
-    /* Sombra y transición suave */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s ease-in-out;
-
-    /* Margen y espaciado interno */
-    margin: 10px;
-    padding: 15px; /* Reduce el espacio interno para hacerlo más compacto */
-
-    /* Añade un poco de espacio adicional alrededor del contenido interno */
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-}
-
-/* Estilos al pasar el mouse por encima para resaltar */
-.MyField:hover,
-.MyDatePicker:hover,
-.MyContador:hover {
-    transform: scale(1.1); /* Aumenta la escala al pasar el mouse */
-}
-
-
-
-/* Estilos para elementos con gridItemStyle */
-.gridItemStyle {
-    /* Agrega estilos personalizados para elementos con esta clase si es necesario */
-}
-.Div1{
+    height: 100vh; /* Ajusta la altura al 100% del viewport */
+  }
+  
+  .Notion > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 10px;
+    background-color: none; /* Fondo blanco para los elementos */
+    border-radius: none; /* Bordes redondeados */
+    box-shadow: none;
+    padding: 10px;
+    transition: transform 0.2s ease-in-out;
+    margin-top: 100px;
+  }
+  
+  /* Estilos al pasar el mouse por encima para resaltar */
+  .Notion > div:hover {
+    transform: scale(1.05);
+  }
+  
+  /* Estilos específicos para el contenedor de tarjetas */
+  .Div1 {
     width: 95%;
-    height: 100%;
-    margin-top: 25px;
-    margin-bottom: 25px;
-    margin-left: auto;
-    margin-right: auto;
-    background-color: #DCDCDC;
-    border-radius: 25px;
-    padding-left: 25px;
-    padding-top: 25px;
-    padding-right: 25px;
-    padding-bottom: 25px;
-    height: fit-content;
-}
+    margin: 25px auto;
+    background-image: linear-gradient( transparent);
+    /*border: 6px solid #B0C4DE; */
 
-.Scroll {
-    margin-left: auto;
-    margin-right: auto;
-    overflow-y: auto;
-}
+    border-radius: 10px;
+    padding: 25px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow-y: auto; /* Agregar scroll si es necesario */
+  }
+  
+  /* Estilos para botón de crear */
+  .Buttons {
+    display: flex;
+    justify-content: center;
+  }
+  
+  /* Estilo para los elementos de entrada y fechas */
+  .MyField,
+  .MyDatePicker {
+    width: 100%;
+    margin: 10px 0;
+  }
+  
+  /* Estilos para el contador */
+  .MyContador {
+    margin: 10px 0;
+  }
+
+ 
+
+
+
+  
+  
