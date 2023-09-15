@@ -81,4 +81,5 @@
     margin-left: auto;
     margin-right: auto;
     overflow-y: auto;
+    max-height: 400px;
 }
