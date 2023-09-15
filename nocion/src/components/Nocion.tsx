@@ -12,6 +12,9 @@ import MyField2 from './Field2';
 import MyDatePicker2 from './DatePicker2';
 import {Tarea} from '../models/Tarea';
 import axios from 'axios';
+import calcularPrioridad from './Tarjeta';
+import MediaCardProps from './Tarjeta';
+import { TransformStream } from 'node:stream/web';
 
 function Nocion() {
     // const [idTarjeta]
@@ -24,6 +27,10 @@ function Nocion() {
     // const [shouldSubmit, setShouldSubmit] = useState(false);
     const [saving,setSaving]=useState(false);
     const [tareas,setTareas]=useState<Tarea[]>([]);
+
+    let tareasSort:Tarea[];
+    let id: number | undefined = undefined;
+
     const gridStyle: CSSProperties = {
         display: 'grid',
         gridTemplateColumns: '1fr 1fr 1fr 1fr 1fr',
@@ -58,15 +65,12 @@ function Nocion() {
     };
 
     const handleGuardarClick = () => {
-        // Acceder a los valores desde los estados
         console.log('NUEVA TARJETA CREADA');
         console.log('Titulo:', tituloValue);
         console.log('Descripcion:', descripcionValue);
         console.log('Fecha de creación:', fechaCreacionValue);
         console.log('Fecha de entrega:', fechaEntregaValue);
         console.log('Valor de MyContador:', countValue);
-
-        // Aquí puedes realizar acciones adicionales, como enviar los valores a un servidor, etc.
     };
 
     // useEffect(() => {
@@ -90,6 +94,7 @@ function Nocion() {
     // },[])
 
     function postTarea(){
+        id = 123;
         // setShouldSubmit(true);
         // console.log('tituloValue:', tituloValue);
         // console.log('descripcionValue:', descripcionValue);
@@ -97,12 +102,13 @@ function Nocion() {
         // console.log('fechaEntregaValue:', fechaEntregaValue);
         // console.log('countValue:', countValue);
         axios.post("http://localhost:8000/tarea/create",{
+            id: id,
             titulo: tituloValue,
             descripcion: descripcionValue,
             fecha_c: fechaCreacionValue,
             fecha_e: fechaEntregaValue,
             tiempo: countValue
-        }).then(async (response)=>{
+        }).then((response)=>{
             setSaving(false);
             getTareas()
             console.log(tareas)
@@ -111,10 +117,58 @@ function Nocion() {
         })
     }
 
-    async function getTareas(){
-        const response= await axios.get('http://localhost:8000/tarea/list')
-        setTareas(response.data)
-        return response.data
+    function calcularPrioridad(tarea:Tarea){
+        const fechaCreacion = new Date(tarea.fecha_c);
+        const fechaEntrega = new Date(tarea.fecha_e);
+        const tiempoEstimado = tarea.tiempo;
+        const diferenciaMilisegundos = fechaEntrega.getTime() - fechaCreacion.getTime();
+      
+        const diferenciaDias = diferenciaMilisegundos / (1000 * 60 * 60 * 24);
+      
+        // Asignar puntajes en función de la proximidad de la fecha de entrega
+        let puntajeFechaEntrega = 0;
+        if (diferenciaDias <= 5) {
+          puntajeFechaEntrega = 3;
+        } else if (diferenciaDias <= 10) {
+          puntajeFechaEntrega = 2;
+        } else if (diferenciaDias >= 14) {
+          puntajeFechaEntrega = 1;
+        }
+      
+        // Asignar puntajes en función del tiempo estimado
+        let puntajeTiempoEstimado = 0;
+        if (tiempoEstimado >=8) {
+          puntajeTiempoEstimado = 3;
+        } else if (tiempoEstimado >=2 && tiempoEstimado <=8) {
+          puntajeTiempoEstimado = 2;
+        } else {
+          puntajeTiempoEstimado = 1;
+        }
+      
+        const puntajeTotal = puntajeFechaEntrega + puntajeTiempoEstimado;
+    
+        if (puntajeTotal >= 5) {
+          return "PRIORIDAD ALTA";
+        } else if (puntajeTotal > 3) {
+          return "PRIORIDAD MEDIA";
+        } else {
+          return "PRIORIDAD BAJA";
+        }
+      }
+
+    async function getTareas() {
+        const response = await axios.get('http://localhost:8000/tarea/list');
+        const tareasOriginales = response.data.slice();
+        const tareasOrdenadas = tareasOriginales.sort((a: Tarea, b: Tarea) => {
+            const prioridadA = calcularPrioridad(a);
+            const prioridadB = calcularPrioridad(b);
+    
+        if (prioridadA === 'PRIORIDAD ALTA' && prioridadB !== 'PRIORIDAD ALTA') return -1;
+        if (prioridadA === 'PRIORIDAD MEDIA' && prioridadB === 'PRIORIDAD BAJA') return -1;
+        return 1;
+        });
+
+        setTareas(tareasOrdenadas);
     }
     
     function deleteTarea(id:number) {
@@ -166,6 +220,7 @@ function Nocion() {
                         fechaCreacion={tarea.fecha_c}
                         fechaEntrega={tarea.fecha_e}
                         tiempo={tarea.tiempo}
+                        prioridad={calcularPrioridad(tarea)}
                         onDelete={()=>deleteTarea(tarea.id)}
                         />
                     ))}
