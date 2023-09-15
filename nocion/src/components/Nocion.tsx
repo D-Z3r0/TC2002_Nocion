@@ -8,15 +8,19 @@ import MyField from './Field';
 import MediaCard from './Tarjeta';
 import Buttons from './Button';
 import "./Nocion.css";
+import MyField2 from './Field2';
+import MyDatePicker2 from './DatePicker2';
 import {Tarea} from '../models/Tarea';
 import axios from 'axios';
 
 function Nocion() {
+    // const [idTarjeta]
     const [tituloValue, setFieldValueTitulo] = useState('');
     const [descripcionValue, setFieldValueDescripcion] = useState('');
     const [fechaCreacionValue, setFechaCreacion] = useState('');
     const [fechaEntregaValue, setFechaEntrega] = useState('');
     const [countValue, setCountValue] = useState(0);
+    const [showCard, setShowCard] = useState(false);
     // const [shouldSubmit, setShouldSubmit] = useState(false);
     const [saving,setSaving]=useState(false);
     const [tareas,setTareas]=useState<Tarea[]>([]);
@@ -85,31 +89,45 @@ function Nocion() {
     //     getTareas();
     // },[])
 
-    function subirTarea(){
+    function postTarea(){
         // setShouldSubmit(true);
-        console.log('tituloValue:', tituloValue);
-        console.log('descripcionValue:', descripcionValue);
-        console.log('fechaCreacionValue:', fechaCreacionValue);
-        console.log('fechaEntregaValue:', fechaEntregaValue);
-        console.log('countValue:', countValue);
+        // console.log('tituloValue:', tituloValue);
+        // console.log('descripcionValue:', descripcionValue);
+        // console.log('fechaCreacionValue:', fechaCreacionValue);
+        // console.log('fechaEntregaValue:', fechaEntregaValue);
+        // console.log('countValue:', countValue);
         axios.post("http://localhost:8000/tarea/create",{
             titulo: tituloValue,
             descripcion: descripcionValue,
             fecha_c: fechaCreacionValue,
             fecha_e: fechaEntregaValue,
             tiempo: countValue
-        }).then((response)=>{
+        }).then(async (response)=>{
             setSaving(false);
-            getTareas();
-            console.log(tareas);
+            getTareas()
+            console.log(tareas)
+            // const resp=await getTareas();
+            // console.log(resp);
         })
     }
 
-    function getTareas(){
-        axios.get('http://localhost:8000/tarea/list').then((response)=>{
-            setTareas(response.data)
-        })
+    async function getTareas(){
+        const response= await axios.get('http://localhost:8000/tarea/list')
+        setTareas(response.data)
+        return response.data
     }
+    
+    function deleteTarea(id:number) {
+        axios.delete(`http://localhost:8000/tarea/delete/${id}`)
+          .then((response) => {
+            if (response.status === 200) {
+              getTareas();
+              console.log(tareas);
+            } else {
+              console.error('Error al eliminar la tarea.');
+            }
+          })
+      }
 
     useEffect(()=>{
         getTareas();
@@ -122,20 +140,20 @@ function Nocion() {
                     <MyField onFieldChange={handleFieldChangeTitulo} labelText='Titulo'/>
                 </div>
                 <div>
-                    <MyField onFieldChange={handleFieldChangeDescripcion} labelText='Descripcion'/>
+                    <MyField2 onFieldChange={handleFieldChangeDescripcion} labelText='Descripcion'/>
                 </div>
                 <div>
                     <MyDatePicker onDateChange={handleDateChangeCreacion} fecha="Fecha de creación" />
                 </div>
                 <div>
-                    <MyDatePicker onDateChange={handleDateChangeEntrega} fecha="Fecha de entrega" />
+                    <MyDatePicker2 onDateChange={handleDateChangeEntrega} fecha="Fecha de entrega" />
                 </div>
                 <div>
                     <MyContador onCountChange={handleCountValueChange} />
                 </div>
             </div>
             <div>
-                <Buttons onClick={subirTarea}></Buttons>
+                <Buttons onClick={postTarea}></Buttons>
             </div>
              
             <div className='Div1'>
@@ -143,11 +161,13 @@ function Nocion() {
                     {/* <MediaCard titulo={tituloValue} descripcion={descripcionValue} fechaCreacion={fechaCreacionValue} fechaEntrega={fechaEntregaValue} tiempo={countValue}></MediaCard> */}
                     {tareas.map((tarea) => (
                     <MediaCard
+                        id={tarea.id}
                         titulo={tarea.titulo}
                         descripcion={tarea.descripcion}
                         fechaCreacion={tarea.fecha_c}
                         fechaEntrega={tarea.fecha_e}
                         tiempo={tarea.tiempo}
+                        onDelete={()=>deleteTarea(tarea.id)}
                         />
                     ))}
                 </div>
@@ -157,3 +177,6 @@ function Nocion() {
 }
 
 export default Nocion;
+
+
+

@@ -2,12 +2,12 @@ import * as React from 'react';
 import TextField from '@mui/material/TextField';
 import { fontWeight } from '@mui/system';
 
-interface MyFieldProps {
+interface MyField2Props {
   labelText:string;
   onFieldChange: (value: string) => void;
 }
 
-export default function MyField(props: MyFieldProps) {
+export default function MyField2(props: MyField2Props) {
   const { onFieldChange } = props;
 
   const handleFieldChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -21,7 +21,7 @@ export default function MyField(props: MyFieldProps) {
   required
   id="outlined-required"
   label={props.labelText}
-  defaultValue="Materias"
+  defaultValue="Descripción"
   onChange={handleFieldChange}
   sx={{
     '& .MuiInputLabel-root': {
@@ -31,14 +31,14 @@ export default function MyField(props: MyFieldProps) {
       borderRadius: '40px',
       backgroundColor: 'none',
       '& fieldset': {
-        borderColor: 'BlueViolet',
+        borderColor: 'Aqua',
         borderWidth: '6px', // Ajusta el grosor del borde
       },
       '&:hover fieldset': {
-        borderColor: 'BlueViolet',
+        borderColor: 'Aqua',
       },
       '&.Mui-focused fieldset': {
-        borderColor: 'BlueViolet',
+        borderColor: 'Aqua',
       },
       
     },
@@ -47,6 +47,3 @@ export default function MyField(props: MyFieldProps) {
     </div>
   );
 }
-
-
-
