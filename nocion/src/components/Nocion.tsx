@@ -8,6 +8,8 @@ import MyField from './Field';
 import MediaCard from './Tarjeta';
 import Buttons from './Button';
 import "./Nocion.css";
+import MyField2 from './Field2';
+import MyDatePicker2 from './DatePicker2';
 import {Tarea} from '../models/Tarea';
 import axios from 'axios';
 
@@ -18,6 +20,7 @@ function Nocion() {
     const [fechaCreacionValue, setFechaCreacion] = useState('');
     const [fechaEntregaValue, setFechaEntrega] = useState('');
     const [countValue, setCountValue] = useState(0);
+    const [showCard, setShowCard] = useState(false);
     // const [shouldSubmit, setShouldSubmit] = useState(false);
     const [saving,setSaving]=useState(false);
     const [tareas,setTareas]=useState<Tarea[]>([]);
@@ -133,13 +136,13 @@ function Nocion() {
                     <MyField onFieldChange={handleFieldChangeTitulo} labelText='Titulo'/>
                 </div>
                 <div>
-                    <MyField onFieldChange={handleFieldChangeDescripcion} labelText='Descripcion'/>
+                    <MyField2 onFieldChange={handleFieldChangeDescripcion} labelText='Descripcion'/>
                 </div>
                 <div>
                     <MyDatePicker onDateChange={handleDateChangeCreacion} fecha="Fecha de creación" />
                 </div>
                 <div>
-                    <MyDatePicker onDateChange={handleDateChangeEntrega} fecha="Fecha de entrega" />
+                    <MyDatePicker2 onDateChange={handleDateChangeEntrega} fecha="Fecha de entrega" />
                 </div>
                 <div>
                     <MyContador onCountChange={handleCountValueChange} />
@@ -168,3 +171,6 @@ function Nocion() {
 }
 
 export default Nocion;
+
+
+
