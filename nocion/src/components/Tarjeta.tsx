@@ -7,6 +7,7 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
+import "./Tarjeta.css";
 
 
 interface MediaCardProps {
@@ -62,40 +63,42 @@ function calcularPrioridad(props: MediaCardProps){
 }
 
 export default function MediaCard(props: MediaCardProps) {
-
   const prioridad = calcularPrioridad(props);
 
   let labelStyle: React.CSSProperties = {};
   if (prioridad === "PRIORIDAD ALTA") {
-    labelStyle.backgroundColor = '#F27F77';
+    labelStyle.background = 'linear-gradient(45deg, #b82151, #ff5e93)';
+    labelStyle.color = 'white';
   } else if (prioridad === "PRIORIDAD MEDIA") {
-    labelStyle.backgroundColor = '#f5eb88';
+    labelStyle.background = 'linear-gradient(45deg, #f5eb88, #ffd836)';
   } else if (prioridad === "PRIORIDAD BAJA") {
-    labelStyle.backgroundColor = '#46f7b7';
+    labelStyle.background = 'linear-gradient(45deg, #46f7b7, #6df7ff)';
   }
 
   return (
-  <Card sx={{ maxWidth: 400 }}>
-    <CardContent>
-      <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-        <Typography gutterBottom variant="h5" component="div" sx={{ textAlign: 'left', overflowWrap: 'break-word', wordBreak: 'break-word' }}>
+    <div className="card-container">
+      <Card className="profile-card" style={{ backgroundColor: 'FloralWhite' }}>
+      <Typography gutterBottom variant="h5" component="div" sx={{ textAlign: 'left', overflowWrap: 'break-word', wordBreak: 'break-word' }}>
           {props.titulo}
+        </Typography>
+        <Typography variant="body2" color="text.secondary" sx={{ textAlign: 'left', overflowWrap: 'break-word', wordBreak: 'break-word' }}>
+          {props.descripcion}
         </Typography>
         <label style={labelStyle}>
           {prioridad}
         </label>
-      </Box>
-      <Typography variant="body2" color="text.secondary" sx={{ textAlign: 'left', overflowWrap: 'break-word', wordBreak: 'break-word' }}>
-        {props.descripcion}
-      </Typography>
-    </CardContent>
-    <CardActions sx={{ justifyContent: 'space-between' }}>
-      <div>
-        <label>{props.fechaEntrega}</label>
-        <label style={{ marginLeft: '15px' }}>Tiempo: {props.tiempo}hrs</label>
-      </div>
-      <Button size="small">Eliminar Tarea</Button>
-    </CardActions>
-  </Card>
+        <div className="profile-delivery">
+          <label>Fecha de Entrega:</label>
+          <label>{props.fechaEntrega}</label>
+        </div>
+        <div className="profile-tiempo">
+          <label>Tiempo: {props.tiempo} hrs</label>
+        </div>
+        <div className="profile-button">
+          <Button size="small">Eliminar Tarea</Button>
+        </div>
+      </Card>
+    </div>
   );
 }
+
