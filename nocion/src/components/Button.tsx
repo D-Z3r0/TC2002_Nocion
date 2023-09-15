@@ -1,8 +1,21 @@
-import * as React from 'react';
+import React from 'react';
+import { useState } from 'react';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 
-export default function Buttons() {
+
+interface ButtonsProps {
+  onClick: () => void;
+}
+
+export default function Buttons(props: ButtonsProps) {
+  const {onClick} = props;
+
+  const handleClick = () => {
+    console.log('El botón fue presionado.');
+    // Puedes realizar cualquier acción adicional aquí.
+    props.onClick();
+  };
   return (
     <Stack spacing={2} direction="row">
       <Button
@@ -15,6 +28,7 @@ export default function Buttons() {
             backgroundColor: 'Moccasin', // Cambia el color de fondo al pasar el mouse
           },
         }}
+        onClick={props.onClick}
       >
         Crear
       </Button>
