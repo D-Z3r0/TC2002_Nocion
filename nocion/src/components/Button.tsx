@@ -1,8 +1,21 @@
-import * as React from 'react';
+import React from 'react';
+import { useState } from 'react';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 
-export default function Buttons() {
+interface ButtonsProps {
+  onClick: () => void;
+}
+
+export default function Buttons(props: ButtonsProps) {
+  const {onClick} = props;
+
+  const handleClick = () => {
+    console.log('El botón fue presionado.');
+    // Puedes realizar cualquier acción adicional aquí.
+    props.onClick();
+  };
+
   const customButtonStyles = {
     borderRadius: '2px', // Hace que el botón sea redondo
     overflow: 'hidden',
@@ -49,6 +62,7 @@ export default function Buttons() {
                 height: '100%',
               },
             }}
+            onClick={props.onClick}
           >
             CREAR
           </Button>
@@ -57,18 +71,3 @@ export default function Buttons() {
     </Stack>
   );
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

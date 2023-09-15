@@ -1,4 +1,4 @@
-import React, { CSSProperties, useState } from 'react';
+import React, { CSSProperties, useState, useEffect } from 'react';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
@@ -10,6 +10,8 @@ import Buttons from './Button';
 import "./Nocion.css";
 import MyField2 from './Field2';
 import MyDatePicker2 from './DatePicker2';
+import {Tarea} from '../models/Tarea';
+import axios from 'axios';
 
 function Nocion() {
     const [tituloValue, setFieldValueTitulo] = useState('');
@@ -18,7 +20,9 @@ function Nocion() {
     const [fechaEntregaValue, setFechaEntrega] = useState('');
     const [countValue, setCountValue] = useState(0);
     const [showCard, setShowCard] = useState(false);
-
+    // const [shouldSubmit, setShouldSubmit] = useState(false);
+    const [saving,setSaving]=useState(false);
+    const [tareas,setTareas]=useState<Tarea[]>([]);
     const gridStyle: CSSProperties = {
         display: 'grid',
         gridTemplateColumns: '1fr 1fr 1fr 1fr 1fr',
@@ -64,6 +68,55 @@ function Nocion() {
         // Aquí puedes realizar acciones adicionales, como enviar los valores a un servidor, etc.
     };
 
+    // useEffect(() => {
+    //     // if (shouldSubmit) {
+    //     //     axios.post("http://localhost:8000/tarea/create", {
+    //     //         titulo: tituloValue,
+    //     //         descripcion: descripcionValue,
+    //     //         fecha_c: fechaCreacionValue,
+    //     //         fecha_e: fechaEntregaValue,
+    //     //         tiempo: countValue
+    //     //     }).then((response) => {
+    //     //         getTareas();
+    //     //         console.log(tareas);
+    //     //         // Reiniciar shouldSubmit después de la solicitud
+    //     //         setShouldSubmit(false);
+    //     //     }).catch((error) => {
+    //     //         console.error('Error al enviar la solicitud POST:', error);
+    //     //     });
+    //     // }
+    //     getTareas();
+    // },[])
+
+    function subirTarea(){
+        // setShouldSubmit(true);
+        console.log('tituloValue:', tituloValue);
+        console.log('descripcionValue:', descripcionValue);
+        console.log('fechaCreacionValue:', fechaCreacionValue);
+        console.log('fechaEntregaValue:', fechaEntregaValue);
+        console.log('countValue:', countValue);
+        axios.post("http://localhost:8000/tarea/create",{
+            titulo: tituloValue,
+            descripcion: descripcionValue,
+            fecha_c: fechaCreacionValue,
+            fecha_e: fechaEntregaValue,
+            tiempo: countValue
+        }).then((response)=>{
+            setSaving(false);
+            getTareas();
+            console.log(tareas);
+        })
+    }
+
+    function getTareas(){
+        axios.get('http://localhost:8000/tarea/list').then((response)=>{
+            setTareas(response.data)
+        })
+    }
+
+    useEffect(()=>{
+        getTareas();
+    }, [])
 
     return (
         <div className="Notion">
@@ -85,11 +138,20 @@ function Nocion() {
                 </div>
             </div>
             <div>
-                <Buttons></Buttons>
+                <Buttons onClick={subirTarea}></Buttons>
             </div>
             <div className='Div1'>
-                <div className='Scroll'>
-                    <MediaCard titulo={tituloValue} descripcion={descripcionValue} fechaCreacion={fechaCreacionValue} fechaEntrega={fechaEntregaValue} tiempo={countValue} />
+                <div className='Scroll' style={gridStyle}>
+                    {/* <MediaCard titulo={tituloValue} descripcion={descripcionValue} fechaCreacion={fechaCreacionValue} fechaEntrega={fechaEntregaValue} tiempo={countValue}></MediaCard> */}
+                    {tareas.map((tarea) => (
+                    <MediaCard
+                        titulo={tarea.titulo}
+                        descripcion={tarea.descripcion}
+                        fechaCreacion={tarea.fecha_c}
+                        fechaEntrega={tarea.fecha_e}
+                        tiempo={tarea.tiempo}
+                        />
+                    ))}
                 </div>
             </div>
         </div>
