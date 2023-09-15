@@ -10,11 +10,16 @@ import Grid from '@mui/material/Grid';
 
 
 interface MediaCardProps {
+  id:number;
   titulo:string;
   descripcion:string;
   fechaCreacion:string;
   fechaEntrega:string;
   tiempo:number;
+}
+
+function getID(props: MediaCardProps){
+  return props.id
 }
 
 function calcularPrioridad(props: MediaCardProps){
@@ -94,7 +99,7 @@ export default function MediaCard(props: MediaCardProps) {
         <label>{props.fechaEntrega}</label>
         <label style={{ marginLeft: '15px' }}>Tiempo: {props.tiempo}hrs</label>
       </div>
-      <Button size="small">Eliminar Tarea</Button>
+      <Button size="small" onClick={getID}>Eliminar Tarea</Button>
     </CardActions>
   </Card>
   );

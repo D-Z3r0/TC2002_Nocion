@@ -12,6 +12,7 @@ import {Tarea} from '../models/Tarea';
 import axios from 'axios';
 
 function Nocion() {
+    // const [idTarjeta]
     const [tituloValue, setFieldValueTitulo] = useState('');
     const [descripcionValue, setFieldValueDescripcion] = useState('');
     const [fechaCreacionValue, setFechaCreacion] = useState('');
@@ -85,29 +86,39 @@ function Nocion() {
     //     getTareas();
     // },[])
 
-    function subirTarea(){
+    function postTarea(){
         // setShouldSubmit(true);
-        console.log('tituloValue:', tituloValue);
-        console.log('descripcionValue:', descripcionValue);
-        console.log('fechaCreacionValue:', fechaCreacionValue);
-        console.log('fechaEntregaValue:', fechaEntregaValue);
-        console.log('countValue:', countValue);
+        // console.log('tituloValue:', tituloValue);
+        // console.log('descripcionValue:', descripcionValue);
+        // console.log('fechaCreacionValue:', fechaCreacionValue);
+        // console.log('fechaEntregaValue:', fechaEntregaValue);
+        // console.log('countValue:', countValue);
         axios.post("http://localhost:8000/tarea/create",{
             titulo: tituloValue,
             descripcion: descripcionValue,
             fecha_c: fechaCreacionValue,
             fecha_e: fechaEntregaValue,
             tiempo: countValue
-        }).then((response)=>{
+        }).then(async (response)=>{
             setSaving(false);
-            getTareas();
-            console.log(tareas);
+            getTareas()
+            console.log(tareas)
+            // const resp=await getTareas();
+            // console.log(resp);
         })
     }
 
-    function getTareas(){
-        axios.get('http://localhost:8000/tarea/list').then((response)=>{
-            setTareas(response.data)
+    async function getTareas(){
+        const response= await axios.get('http://localhost:8000/tarea/list')
+        setTareas(response.data)
+        return response.data
+    }
+    
+    function deleteTarea(){
+        axios.delete("http://localhost:8000/tarea/delete/{id}",{
+            
+        }).then((response)=>{
+
         })
     }
 
@@ -135,13 +146,14 @@ function Nocion() {
                 </div>
             </div>
             <div>
-                <Buttons onClick={subirTarea}></Buttons>
+                <Buttons onClick={postTarea}></Buttons>
             </div>
             <div className='Div1'>
                 <div className='Scroll' style={gridStyle}>
                     {/* <MediaCard titulo={tituloValue} descripcion={descripcionValue} fechaCreacion={fechaCreacionValue} fechaEntrega={fechaEntregaValue} tiempo={countValue}></MediaCard> */}
                     {tareas.map((tarea) => (
                     <MediaCard
+                        id={tarea.id}
                         titulo={tarea.titulo}
                         descripcion={tarea.descripcion}
                         fechaCreacion={tarea.fecha_c}
