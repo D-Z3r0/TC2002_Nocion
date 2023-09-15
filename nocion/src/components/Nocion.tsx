@@ -117,13 +117,17 @@ function Nocion() {
         return response.data
     }
     
-    function deleteTarea(){
-        axios.delete("http://localhost:8000/tarea/delete/{id}",{
-            
-        }).then((response)=>{
-
-        })
-    }
+    function deleteTarea(id:number) {
+        axios.delete(`http://localhost:8000/tarea/delete/${id}`)
+          .then((response) => {
+            if (response.status === 200) {
+              getTareas();
+              console.log(tareas);
+            } else {
+              console.error('Error al eliminar la tarea.');
+            }
+          })
+      }
 
     useEffect(()=>{
         getTareas();
@@ -162,6 +166,7 @@ function Nocion() {
                         fechaCreacion={tarea.fecha_c}
                         fechaEntrega={tarea.fecha_e}
                         tiempo={tarea.tiempo}
+                        onDelete={()=>deleteTarea(tarea.id)}
                         />
                     ))}
                 </div>
