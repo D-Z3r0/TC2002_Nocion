@@ -11,11 +11,14 @@ import "./Tarjeta.css";
 
 
 interface MediaCardProps {
+  id:number;
   titulo:string;
   descripcion:string;
   fechaCreacion:string;
   fechaEntrega:string;
   tiempo:number;
+  onDelete: (id: number) => void;
+
 }
 
 function calcularPrioridad(props: MediaCardProps){
@@ -65,6 +68,11 @@ function calcularPrioridad(props: MediaCardProps){
 export default function MediaCard(props: MediaCardProps) {
   const prioridad = calcularPrioridad(props);
 
+  const eliminarTarea = () => {
+    // Llama a alguna función o acción con el id
+    return props.id;
+  };
+
   let labelStyle: React.CSSProperties = {};
   if (prioridad === "PRIORIDAD ALTA") {
     labelStyle.background = 'linear-gradient(45deg, #b82151, #ff5e93)';
@@ -95,7 +103,7 @@ export default function MediaCard(props: MediaCardProps) {
           <label>Tiempo: {props.tiempo} hrs</label>
         </div>
         <div className="profile-button">
-          <Button size="small">Eliminar Tarea</Button>
+          <Button size="small" onClick={() => props.onDelete(props.id)}>Eliminar Tarea</Button>
         </div>
       </Card>
     </div>
