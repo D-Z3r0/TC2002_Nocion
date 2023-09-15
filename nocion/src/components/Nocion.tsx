@@ -83,6 +83,7 @@ function Nocion() {
             <div>
                 <Buttons></Buttons>
             </div>
+             
             <div className='Div1'>
                 <div className='Scroll'>
                     <MediaCard titulo={tituloValue} descripcion={descripcionValue} fechaCreacion={fechaCreacionValue} fechaEntrega={fechaEntregaValue} tiempo={countValue} />
